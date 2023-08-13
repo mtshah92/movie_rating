@@ -23,6 +23,16 @@ export const MovieProvider = ({ children }) => {
         return { ...state, rating: action.payload };
       case "year":
         return { ...state, year: action.payload };
+      case "add_movie":
+        return { ...state, data: [...state.data, action.payload] };
+      case "star":
+        return {
+          ...state,
+          watchList: [...state.watchList, action.data],
+          data: state.data.map((item) =>
+            item.id === action.payload ? { ...item, starred: true } : item
+          ),
+        };
       case "watchlist":
         return {
           ...state,

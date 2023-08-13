@@ -75,8 +75,16 @@ export const MovieList = () => {
       </div>
       <div className="movie-list">
         {filterData.map((item) => {
-          const { id, title, imageURL, summary, rating, year, watchList } =
-            item;
+          const {
+            id,
+            title,
+            imageURL,
+            summary,
+            rating,
+            year,
+            watchList,
+            starred,
+          } = item;
           return (
             <div className="each-movie" key={id}>
               <img src={imageURL} alt={title} width="200" height="200" />
@@ -89,6 +97,14 @@ export const MovieList = () => {
               <p>{summary}</p>
               <p>Rating: {rating}</p>
               <p>Year: {year}</p>
+              <button
+                onClick={() =>
+                  dispatch({ type: "star", payload: id, data: item })
+                }
+                disabled={starred}
+              >
+                {starred ? "Starred" : "Star"}
+              </button>
               <button
                 onClick={() =>
                   dispatch({ type: "watchlist", payload: id, data: item })
