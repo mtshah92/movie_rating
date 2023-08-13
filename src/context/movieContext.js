@@ -4,9 +4,11 @@ import { movies } from "../db/db";
 export const MovieContext = createContext();
 
 export const MovieProvider = ({ children }) => {
+  const storedData = JSON.parse(localStorage.getItem("movies"));
+  console.log(storedData);
   const initialData = {
-    data: movies,
-    watchList: [],
+    data: storedData.data ? storedData.data : movies,
+    watchList: storedData.watchList ? storedData.watchList : [],
     search: "",
     genre: "",
     year: "",
@@ -53,7 +55,8 @@ export const MovieProvider = ({ children }) => {
     }
   };
   const [state, dispatch] = useReducer(movieHandler, initialData);
-  console.log(state);
+  localStorage.setItem("movies", JSON.stringify(state));
+  // console.log(state);
 
   const movieData = () => {
     let data = [...state.data];
