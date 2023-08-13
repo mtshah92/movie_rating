@@ -49,6 +49,9 @@ export const MovieProvider = ({ children }) => {
           watchList: state.watchList.filter(
             (item) => item.id !== action.payload
           ),
+          data: state.data.map((item) =>
+            item.id === action.payload ? { ...item, watchList: false } : item
+          ),
         };
       default:
         return state;
@@ -64,11 +67,8 @@ export const MovieProvider = ({ children }) => {
       data = data.filter(
         (item) =>
           item.title.toLowerCase().includes(state.search.toLowerCase()) ||
-          item.director.toLowerCase().includes(state.search.toLowerCase())
-        //    ||
-        //   item.cast.filter((item) =>
-        //     item.toLowerCase().includes(state.search.toLowerCase())
-        //   )
+          item.director.toLowerCase().includes(state.search.toLowerCase()) ||
+          item.cast.join().toLowerCase().includes(state.search.toLowerCase())
       );
     }
     if (state.genre) {
