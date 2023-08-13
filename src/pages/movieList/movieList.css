@@ -1,0 +1,33 @@
+.movie-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.add-movie {
+  border: 1px solid;
+  background-color: black;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+.add-movie:hover {
+  cursor: pointer;
+}
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100px;
+  line-height: 1;
+}
+.movie-title:hover {
+  cursor: pointer;
+}
+.each-movie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid;
+  width: 200px;
+  margin: 0.5rem;
+}
